@@ -1,0 +1,448 @@
+// ── Variables ─────────────────────────────────────────────────────────────────
+$bg-page:        #0d1117;
+$bg-card:        #161b22;
+$bg-panel:       #1c2230;
+$bg-input:       #1e2535;
+$border-color:   #2a3348;
+$text-primary:   #e6edf3;
+$text-secondary: #c9d1d9;
+$text-muted:     #7d8590;
+$text-faint:     #4a5568;
+$accent:         #7c3aed;
+$accent-pink:    #ec4899;
+$accent-light:   #a78bfa;
+$success:        #34d399;
+$success-bg:     rgba(5, 150, 105, 0.06);
+$info-bg:        #1b2a4a;
+$info-border:    #2d4a7a;
+$font-stack:     system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+// ── Page Shell ────────────────────────────────────────────────────────────────
+.home-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: $bg-page;
+    color: $text-primary;
+    font-family: $font-stack;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 1.5rem;
+    gap: 2rem;
+}
+
+// ── Page Header ───────────────────────────────────────────────────────────────
+.page-header {
+    text-align: center;
+
+    h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: $text-primary;
+    }
+
+    p {
+        color: $text-muted;
+        font-size: 0.9rem;
+        max-width: 460px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .highlight {
+        background: linear-gradient(90deg, $accent-light, $accent-pink);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+}
+
+// ── Main Card ─────────────────────────────────────────────────────────────────
+.interview-card {
+    width: 100%;
+    max-width: 860px;
+    background-color: $bg-card;
+    border: 1px solid $border-color;
+    border-radius: 14px;
+    overflow: hidden;
+
+    &__body {
+        display: flex;
+        min-height: 480px;
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.5rem;
+        border-top: 1px solid $border-color;
+
+        .footer-info {
+            font-size: 0.78rem;
+            color: $text-muted;
+        }
+    }
+}
+
+// ── Panels ────────────────────────────────────────────────────────────────────
+.panel-divider {
+    width: 1px;
+    background-color: $border-color;
+    flex-shrink: 0;
+}
+
+.panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 1.5rem;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        h2 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: $text-primary;
+            flex: 1;
+        }
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        color: $accent-light;
+    }
+
+    &__textarea {
+        flex: 1;
+        width: 100%;
+        background-color: $bg-input;
+        border: 1px solid $border-color;
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        color: $text-primary;
+        font-family: $font-stack;
+        font-size: 0.85rem;
+        resize: none;
+        outline: none;
+        transition: border-color 0.2s;
+        line-height: 1.5;
+
+        &::placeholder {
+            color: $text-faint;
+        }
+
+        &:focus {
+            border-color: $accent;
+        }
+
+        &--short {
+            flex: unset;
+            height: 90px;
+        }
+    }
+
+    &--left {
+        position: relative;
+
+        .char-counter {
+            position: absolute;
+            bottom: 2.25rem;
+            right: 2rem;
+            font-size: 0.72rem;
+            color: $text-faint;
+        }
+    }
+}
+
+// ── Badges ────────────────────────────────────────────────────────────────────
+.badge {
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+
+    &--required {
+        background-color: rgba($accent-pink, 0.12);
+        color: $accent-pink;
+        border: 1px solid rgba($accent-pink, 0.25);
+    }
+
+    &--best {
+        background-color: rgba($accent-light, 0.12);
+        color: $accent-light;
+        border: 1px solid rgba($accent-light, 0.25);
+    }
+}
+
+// ── Section Label ─────────────────────────────────────────────────────────────
+.section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: $text-secondary;
+}
+
+// ── Dropzone ──────────────────────────────────────────────────────────────────
+.upload-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    padding: 1.25rem 1rem;
+    background-color: $bg-input;
+    border: 2px dashed $border-color;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+
+    &:hover {
+        border-color: $accent;
+        background-color: rgba($accent, 0.06);
+    }
+
+    &--uploaded {
+        border-color: #059669;
+        border-style: solid;
+        background-color: $success-bg;
+    }
+
+    &__icon {
+        color: $accent-light;
+        margin-bottom: 0.2rem;
+    }
+
+    &__title {
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: $text-secondary;
+        margin: 0;
+
+        &--success {
+            color: $success;
+        }
+    }
+
+    &__subtitle {
+        font-size: 0.72rem;
+        color: $text-faint;
+        margin: 0;
+    }
+}
+
+// ── OR Divider ────────────────────────────────────────────────────────────────
+.or-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: $text-faint;
+    font-size: 0.72rem;
+
+    &::before,
+    &::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background-color: $border-color;
+    }
+}
+
+// ── Self Description ──────────────────────────────────────────────────────────
+.self-description {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+// ── Info Box ──────────────────────────────────────────────────────────────────
+.info-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.7rem 0.9rem;
+    background-color: $info-bg;
+    border: 1px solid $info-border;
+    border-radius: 8px;
+
+    &__icon {
+        flex-shrink: 0;
+        color: #60a5fa;
+        margin-top: 1px;
+    }
+
+    p {
+        margin: 0;
+        font-size: 0.78rem;
+        color: #7da8f0;
+        line-height: 1.5;
+
+        strong {
+            color: $text-secondary;
+        }
+    }
+}
+
+// ── Generate Button ───────────────────────────────────────────────────────────
+.generate-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.4rem;
+    background: linear-gradient(135deg, $accent, $accent-pink);
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    font-family: $font-stack;
+
+    &:hover {
+        opacity: 0.88;
+    }
+
+    &:active {
+        transform: scale(0.97);
+    }
+
+    &--disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+.error-message {
+    font-size: 0.8rem;
+    color: #f87171;
+}
+
+// ── Recent Reports ────────────────────────────────────────────────────────────
+.recent-reports {
+    width: 100%;
+    max-width: 860px;
+
+    h2 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        color: $text-secondary;
+    }
+
+    .reports-list {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        list-style: none;
+        padding: 0;
+
+        .report-item {
+            background-color: $bg-card;
+            border: 1px solid $border-color;
+            border-radius: 10px;
+            padding: 1rem 1.1rem;
+            flex: 1;
+            min-width: 180px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            cursor: pointer;
+            transition: border-color 0.2s, transform 0.15s;
+
+            &:hover {
+                border-color: $accent;
+                transform: translateY(-2px);
+            }
+
+            h3 {
+                font-size: 0.88rem;
+                font-weight: 600;
+                color: $text-primary;
+            }
+
+            .report-meta {
+                font-size: 0.75rem;
+                color: $text-faint;
+            }
+
+            .match-score {
+                font-size: 0.78rem;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+.score--high { color: #34d399; }
+.score--mid  { color: #fbbf24; }
+.score--low  { color: #f87171; }
+
+// ── Generating Overlay ────────────────────────────────────────────────────────
+.generating-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba($bg-page, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.generating-box {
+    background: $bg-card;
+    border: 1px solid $border-color;
+    border-radius: 14px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 340px;
+
+    h2 { font-size: 1.1rem; font-weight: 600; }
+    p  { font-size: 0.82rem; color: $text-muted; line-height: 1.6; }
+}
+
+.generating-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid $border-color;
+    border-top-color: $accent-light;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+// ── Page Footer ───────────────────────────────────────────────────────────────
+.page-footer {
+    display: flex;
+    gap: 1.5rem;
+
+    a {
+        font-size: 0.78rem;
+        color: $text-faint;
+        text-decoration: none;
+        transition: color 0.2s;
+
+        &:hover { color: $text-secondary; }
+    }
+}

@@ -1,0 +1,29 @@
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Build folders
+build/
+coverage/
+
+# Cache files
+.cache/
+.parcel-cache/
+
+# OS files
+Thumbs.db
+
+# AI / uploads
+uploads/
+temp/
+tmp/
+
+# Logs
+*.out
+*.err
+
+# Dependency lock optional
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
