@@ -6,8 +6,9 @@ const app = express();
 
 // ✅ CORS first, before everything
 const allowedOrigins = [
-    'http://localhost:5173',
-    'https://ai-based-resume-analyzer-b2eg.onrender.com'
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'https://ai-based-resume-analyzer-psi.vercel.app', // your Vercel URL
 ];
 
 app.use(cors({
