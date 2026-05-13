@@ -1,11 +1,9 @@
 import axios from "axios"
 
 const api = axios.create({
-    baseURL: "",  // ✅ must be empty
+    baseURL: "https://ai-based-resume-analyzer-b2eg.onrender.com", // ✅ direct URL
     withCredentials: true
 })
-
-
 
 export async function register({ username, email, password }) {
     try {
@@ -15,7 +13,7 @@ export async function register({ username, email, password }) {
         return response.data
     } catch (err) {
         console.log(err)
-        throw err  // ← ADD THIS so useAuth catches it and returns false
+        throw err
     }
 }
 
@@ -27,6 +25,7 @@ export async function login({ email, password }) {
         return response.data
     } catch (err) {
         console.log(err)
+        throw err
     }
 }
 
@@ -36,6 +35,7 @@ export async function logout() {
         return response.data
     } catch (err) {
         console.log(err)
+        throw err
     }
 }
 
@@ -45,6 +45,6 @@ export async function getMe() {
         return response.data
     } catch (err) {
         console.log(err)
-        return null;
+        return null
     }
 }
