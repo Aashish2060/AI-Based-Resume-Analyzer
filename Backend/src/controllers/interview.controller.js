@@ -8,15 +8,25 @@ async function generateInterViewReportController(req, res) {
         console.log("File received:", req.file)
         console.log("Body received:", req.body)
 
-        const resumeContent = await (new pdfParse.PDFParse(Uint8Array.from(req.file.buffer))).getText()
+        if (!req.file) {
+            return res.status(400).json({
+                message: "Resume file is required"
+            })
+        }
+
+        // Extract text from uploaded PDF
+        const resumeContent = await pdfParse(req.file.buffer)
+
         const { selfDescription, jobDescription } = req.body
 
+        // Generate AI interview report
         const interViewReportByAi = await generateInterviewReport({
             resume: resumeContent.text,
             selfDescription,
             jobDescription
         })
 
+        // Save report in database
         const interviewReport = await interviewReportModel.create({
             user: req.user.id,
             resume: resumeContent.text,
@@ -29,9 +39,16 @@ async function generateInterViewReportController(req, res) {
             message: "Interview report generated successfully.",
             interviewReport
         })
+
     } catch (error) {
-        console.error("generateInterViewReportController error:", error.message)
-        res.status(500).json({ message: error.message })
+        console.error(
+            "generateInterViewReportController error:",
+            error
+        )
+
+        res.status(500).json({
+            message: error.message || "Internal Server Error"
+        })
     }
 }
 

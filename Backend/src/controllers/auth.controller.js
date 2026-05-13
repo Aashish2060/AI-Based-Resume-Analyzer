@@ -12,7 +12,7 @@ async function registerUserController(req, res) {
         })
     }
 
-    const isUserAlreadyExists = await userModel.findOne({ email })  // ✅ only check email
+    const isUserAlreadyExists = await userModel.findOne({ email })
 
     if (isUserAlreadyExists) {
         return res.status(400).json({
@@ -35,8 +35,8 @@ async function registerUserController(req, res) {
 
     res.cookie("token", token, {
         httpOnly: true,
-        sameSite: "lax",
-        secure: false,
+        sameSite: "none",   // ✅ required for cross-site
+        secure: true,       // ✅ required when sameSite is "none"
         path: "/"
     })
 
@@ -83,8 +83,8 @@ async function loginUserController(req, res) {
 
     res.cookie("token", token, {
         httpOnly: true,
-        sameSite: "lax",
-        secure: false,
+        sameSite: "none",   // ✅ required for cross-site
+        secure: true,       // ✅ required when sameSite is "none"
         path: "/"
     })
 
@@ -103,7 +103,12 @@ async function logoutUserController(req, res) {
     if (token) {
         await tokenBlacklistModel.create({ token })
     }
-    res.clearCookie("token")
+    res.clearCookie("token", {
+        httpOnly: true,
+        sameSite: "none",   // ✅ must match how it was set
+        secure: true,
+        path: "/"
+    })
     res.status(200).json({
         message: "User logged out successfully"
     })
