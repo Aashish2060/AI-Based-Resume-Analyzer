@@ -1,5 +1,22 @@
+# ─────────────────────────────────────────
+# OS & Editor
+# ─────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ─────────────────────────────────────────
 # Logs
-logs
+# ─────────────────────────────────────────
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -9,47 +26,63 @@ lerna-debug.log*
 *.out
 *.err
 
+# ─────────────────────────────────────────
 # Dependencies
+# ─────────────────────────────────────────
 node_modules/
 Backend/node_modules/
 Frontend/node_modules/
 
-# Environment variables
+# ─────────────────────────────────────────
+# Environment Variables
+# ─────────────────────────────────────────
 .env
 .env.*
 !.env.example
 
-# Build folders
+# ─────────────────────────────────────────
+# Build & Output
+# ─────────────────────────────────────────
 dist/
 dist-ssr/
 build/
-coverage/
 
-# Cache files
+# ─────────────────────────────────────────
+# Cache
+# ─────────────────────────────────────────
 .cache/
 .parcel-cache/
+.vite/
 
-# Temporary files
-uploads/
+# ─────────────────────────────────────────
+# TypeScript
+# ─────────────────────────────────────────
+*.tsbuildinfo
+
+# ─────────────────────────────────────────
+# Test & Coverage
+# ─────────────────────────────────────────
+coverage/
+*.lcov
+
+# ─────────────────────────────────────────
+# Uploads & Temp (resume files are sensitive)
+# ─────────────────────────────────────────
 temp/
 tmp/
+uploads/*
+!uploads/.gitkeep
 
-# Dependency lock files
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
+# ─────────────────────────────────────────
+# Python (AI/ML scripts)
+# ─────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+.venv/
 
-# Local config
+# ─────────────────────────────────────────
+# Local Config
+# ─────────────────────────────────────────
 *.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-Thumbs.db
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
