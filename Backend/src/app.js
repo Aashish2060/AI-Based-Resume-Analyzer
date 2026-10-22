@@ -8,7 +8,7 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
-  'https://ai-based-resume-analyzer-psi.vercel.app', // your Vercel URL
+  'https://ai-based-resume-analyzer-psi.vercel.app',
 ];
 
 app.use(cors({
